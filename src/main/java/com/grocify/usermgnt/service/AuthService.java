@@ -7,6 +7,7 @@ import com.grocify.usermgnt.exception.InvalidCredentialsException;
 import com.grocify.usermgnt.exception.UserNotFoundException;
 import com.grocify.usermgnt.model.request.LoginRequest;
 import com.grocify.usermgnt.model.response.LoginResponse;
+import com.grocify.usermgnt.utility.JWTUtility;
 import com.grocify.usermgnt.utility.ResponseBuilder;
 import com.grocify.usermgnt.validator.AuthRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class AuthService {
     @Autowired
     private ResponseBuilder responseBuilder;
 
+    @Autowired
+    private JWTUtility jwtUtility;
+
     public LoginResponse login(LoginRequest loginRequest) {
         authRequestValidator.validateLoginRequest(loginRequest);
         Optional<UserDTO> optionalUserDetails = authDao.getUserByEmailIdAndPassword(loginRequest.getUsername());
@@ -40,8 +44,7 @@ public class AuthService {
             throw new InvalidCredentialsException("incorrect password");
         }
 
-        return responseBuilder.buildLoginResponse("abc" ,user );
-
+        return responseBuilder.buildLoginResponse(jwtUtility.buildJWT(user), user );
     }
 
 

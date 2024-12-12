@@ -37,4 +37,6 @@ public class UserEntity {
 
     private Date lastLogin;
 
+    private Boolean status;
+
 }

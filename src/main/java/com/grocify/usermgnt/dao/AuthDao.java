@@ -22,7 +22,7 @@ public class AuthDao {
     public Optional<UserDTO> getUserByEmailIdAndPassword(String emailId) {
         Optional<UserEntity> userDetails = authRepository.findById(emailId);
 
-        if (userDetails.isPresent()){
+        if (userDetails.isPresent() && userDetails.get().getStatus()){
             UserEntity user = userDetails.get();
             UserDTO userDto = userMapper.userEntityToUserDTO(user);
             return Optional.of(userDto);
