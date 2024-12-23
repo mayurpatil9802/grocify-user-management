@@ -6,6 +6,7 @@ import com.grocify.usermgnt.dto.UserDTO;
 import com.grocify.usermgnt.exception.InvalidCredentialsException;
 import com.grocify.usermgnt.exception.UserNotFoundException;
 import com.grocify.usermgnt.model.request.LoginRequest;
+import com.grocify.usermgnt.model.request.SignupRequest;
 import com.grocify.usermgnt.model.response.LoginResponse;
 import com.grocify.usermgnt.utility.JWTUtility;
 import com.grocify.usermgnt.utility.ResponseBuilder;
@@ -48,5 +49,9 @@ public class AuthService {
     }
 
 
-
+    public LoginResponse signUp(SignupRequest signupRequest) {
+        authRequestValidator.validateSignUpRequest(signupRequest);
+        Optional<UserDTO> user = authDao.insertUserInformation(signupRequest);
+        return responseBuilder.buildLoginResponse(jwtUtility.buildJWT(user.get()), user.get() );
+    }
 }
