@@ -1,7 +1,9 @@
 package com.grocify.usermgnt.controller;
 
 
+import com.grocify.usermgnt.dto.UserDTO;
 import com.grocify.usermgnt.model.request.LoginRequest;
+import com.grocify.usermgnt.model.request.SignupRequest;
 import com.grocify.usermgnt.model.response.LoginResponse;
 import com.grocify.usermgnt.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ public class AuthController {
     @PostMapping("/login")
     public LoginResponse userInformation(@RequestBody LoginRequest loginRequest){
         return authService.login(loginRequest);
+    }
+
+    @PostMapping("/signup")
+    public LoginResponse signUpUserDetail(@RequestBody SignupRequest signupRequest){
+        return authService.signUp(signupRequest);
     }
 
 }

@@ -3,6 +3,7 @@ package com.grocify.usermgnt.dao;
 import com.grocify.usermgnt.dto.UserDTO;
 import com.grocify.usermgnt.entity.UserEntity;
 import com.grocify.usermgnt.mapper.UserMapper;
+import com.grocify.usermgnt.model.request.SignupRequest;
 import com.grocify.usermgnt.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,12 @@ public class AuthDao {
         }
 
         return Optional.empty();
+    }
+    public Optional<UserDTO> insertUserInformation(SignupRequest signupRequest){
+        UserEntity user = userMapper.signUpRequestToUserEntity(signupRequest);
+        authRepository.save(user);
+        UserDTO userDto = userMapper.userEntityToUserDTO(user);
+        return Optional.of(userDto);
     }
 
 }

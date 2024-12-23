@@ -1,14 +1,11 @@
-package com.grocify.usermgnt.dto;
+package com.grocify.usermgnt.model.request;
 
 import com.grocify.usermgnt.enums.UserRole;
-import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
 
 @Data
-@Builder
-public class UserDTO {
+public class SignupRequest {
 
     private String emailId;
 
@@ -22,8 +19,8 @@ public class UserDTO {
 
     private String password;
 
-    private UserRole role;
+    private String confirmPassword;
 
-    private LocalDate lastLogin;
+    private UserRole role;
 
 }

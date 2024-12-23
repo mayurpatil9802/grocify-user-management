@@ -3,14 +3,16 @@ package com.grocify.usermgnt.entity;
 import com.grocify.usermgnt.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "user")
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class UserEntity {
 
     @Id
@@ -29,13 +31,13 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @CreatedDate
-    private Date createdAt;
+    @CreationTimestamp
+    private LocalDate createdAt;
 
-    @LastModifiedDate
-    private Date updatedAt;
+    @UpdateTimestamp
+    private LocalDate updatedAt;
 
-    private Date lastLogin;
+    private LocalDate lastLogin;
 
     private Boolean status;
 
