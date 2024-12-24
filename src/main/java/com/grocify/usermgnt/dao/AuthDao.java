@@ -19,8 +19,7 @@ public class AuthDao {
     @Autowired
     private UserMapper userMapper;
 
-
-    public Optional<UserDTO> getUserByEmailIdAndPassword(String emailId) {
+    public Optional<UserDTO> getUserByEmailId(String emailId) {
         Optional<UserEntity> userDetails = authRepository.findById(emailId);
 
         if (userDetails.isPresent() && userDetails.get().getStatus()){
@@ -31,11 +30,18 @@ public class AuthDao {
 
         return Optional.empty();
     }
+
     public Optional<UserDTO> insertUserInformation(SignupRequest signupRequest){
         UserEntity user = userMapper.signUpRequestToUserEntity(signupRequest);
         authRepository.save(user);
         UserDTO userDto = userMapper.userEntityToUserDTO(user);
         return Optional.of(userDto);
+    }
+
+    public UserDTO updateUserDetails(UserDTO userDTO) {
+        UserEntity user = userMapper.userDTOToUserEntity(userDTO);
+        authRepository.save(user);
+        return userDTO;
     }
 
 }

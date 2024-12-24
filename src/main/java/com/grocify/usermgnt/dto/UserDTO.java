@@ -24,6 +24,8 @@ public class UserDTO {
 
     private UserRole role;
 
+    private Boolean status;
+
     private LocalDate lastLogin;
 
 }
