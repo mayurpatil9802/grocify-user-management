@@ -20,7 +20,7 @@ public class ResponseBuilder {
 
     }
 
-    private UserResponse userDTOToUserResponse(UserDTO userDTO) {
+    public UserResponse userDTOToUserResponse(UserDTO userDTO) {
         return UserResponse.builder()
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())

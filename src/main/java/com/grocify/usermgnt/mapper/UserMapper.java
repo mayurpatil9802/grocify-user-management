@@ -37,4 +37,20 @@ public class UserMapper {
     }
 
 
+    public UserEntity userDTOToUserEntity(UserDTO userDTO) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setFirstName(userDTO.getFirstName());
+        userEntity.setLastName(userDTO.getLastName());
+        userEntity.setMobileNo(userDTO.getMobileNo());
+        userEntity.setAddress(userDTO.getAddress());
+        userEntity.setRole(userDTO.getRole());
+        userEntity.setEmailId(userDTO.getEmailId());
+        userEntity.setPassword(userDTO.getPassword());
+        userEntity.setLastLogin(LocalDate.now());
+        userEntity.setStatus(userDTO.getStatus());
+        return userEntity;
+
+    }
+
+
 }
