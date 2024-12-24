@@ -40,6 +40,7 @@ public class UserProfileService {
         userDTO.setLastName(userProfileUpdateRequest.getLastName());
         userDTO.setMobileNo(userProfileUpdateRequest.getMobileNo());
         userDTO.setAddress(userProfileUpdateRequest.getAddress());
+        userDTO.setStatus(Boolean.TRUE);
 
         userDTO = authDao.updateUserDetails(userDTO);
         return responseBuilder.userDTOToUserResponse(userDTO);
