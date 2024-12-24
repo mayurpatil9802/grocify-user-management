@@ -17,12 +17,11 @@ public class UserProfileController {
     public UserResponse updateProfile(@PathVariable String emailId, @RequestBody UserProfileUpdateRequest userProfileUpdateRequest) {
         return userProfileService.updateUserProfile(emailId, userProfileUpdateRequest);
     }
-    @GetMapping("/{emailId}")
-    public void deleteProfile(@PathVariable String emailId){
-        userProfileService.deleteUserProfile(emailId);
+
+    @DeleteMapping("/{emailId}")
+    public UserResponse deleteProfile(@PathVariable String emailId) {
+        return userProfileService.deleteUserProfile(emailId);
     }
-
-
 
 
 }

@@ -2,6 +2,7 @@ package com.grocify.usermgnt.service;
 
 import com.grocify.usermgnt.dao.AuthDao;
 import com.grocify.usermgnt.dto.UserDTO;
+import com.grocify.usermgnt.exception.InvalidRequestException;
 import com.grocify.usermgnt.exception.UserNotFoundException;
 import com.grocify.usermgnt.model.request.UserProfileUpdateRequest;
 import com.grocify.usermgnt.model.response.UserResponse;
@@ -43,18 +44,25 @@ public class UserProfileService {
         userDTO = authDao.updateUserDetails(userDTO);
         return responseBuilder.userDTOToUserResponse(userDTO);
     }
-    public void deleteUserProfile(String email){
-        Optional<UserDTO> existingUserDetails = Optional.empty();
-        if(StringUtils.hasText(email)){
-            existingUserDetails = authDao.getUserByEmailId(email);
 
-            if(existingUserDetails.isEmpty()){
-                throw new UserNotFoundException("User with provided emailId is not present");
-            }
+    public UserResponse deleteUserProfile(String email){
+
+        if (!StringUtils.hasText(email)) {
+            throw new InvalidRequestException("Email id Id cannot be null or empty");
         }
-        UserDTO userDTO= existingUserDetails.get();
+
+        Optional<UserDTO> existingUserDetails = authDao.getUserByEmailId(email);
+
+        if(existingUserDetails.isEmpty()){
+            throw new UserNotFoundException("User with provided emailId is not present");
+        }
+
+        UserDTO userDTO = existingUserDetails.get();
         userDTO.setStatus(Boolean.FALSE);
-        authDao.deleteUserProfile(userDTO);
+
+        userDTO = authDao.updateUserDetails(userDTO);
+
+        return responseBuilder.userDTOToUserResponse(userDTO);
     }
 
 }

@@ -44,8 +44,4 @@ public class AuthDao {
         return userDTO;
     }
 
-    public void deleteUserProfile(UserDTO userDTO) {
-        UserEntity user=userMapper.userDTOToUserEntity(userDTO);
-        authRepository.save(user);
-    }
 }
