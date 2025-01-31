@@ -29,7 +29,7 @@ public class UserProfileService {
 
         Optional<UserDTO> existingUserDetails = authDao.getUserById(id);
 
-        if(existingUserDetails.isEmpty()){
+        if (existingUserDetails.isEmpty()) {
             throw new UserNotFoundException("User with provided emailId is not present");
         }
 
@@ -45,11 +45,11 @@ public class UserProfileService {
         return responseBuilder.userDTOToUserResponse(userDTO);
     }
 
-    public UserResponse deleteUserProfile(Long id){
+    public UserResponse deleteUserProfile(Long id) {
 
         Optional<UserDTO> existingUserDetails = authDao.getUserById(id);
 
-        if(existingUserDetails.isEmpty()){
+        if (existingUserDetails.isEmpty()) {
             throw new UserNotFoundException("User with provided emailId is not present");
         }
 

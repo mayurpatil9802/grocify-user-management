@@ -42,6 +42,7 @@ public class UserMapper {
 
     public UserEntity userDTOToUserEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
+        userEntity.setId(userDTO.getId());
         userEntity.setFirstName(userDTO.getFirstName());
         userEntity.setLastName(userDTO.getLastName());
         userEntity.setMobileNo(userDTO.getMobileNo());

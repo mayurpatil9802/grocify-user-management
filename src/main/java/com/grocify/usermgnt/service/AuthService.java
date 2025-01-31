@@ -36,23 +36,23 @@ public class AuthService {
         Optional<UserDTO> optionalUserDetails = authDao.getUserByEmailId(loginRequest.getUsername());
 
 
-        if(optionalUserDetails.isEmpty()){
+        if (optionalUserDetails.isEmpty()) {
             throw new UserNotFoundException("User with provided emailId is not present");
         }
 
         UserDTO user = optionalUserDetails.get();
 
-        if(!user.getPassword().equals(loginRequest.getPassword())){
+        if (!user.getPassword().equals(loginRequest.getPassword())) {
             throw new InvalidCredentialsException("incorrect password");
         }
 
-        return responseBuilder.buildLoginResponse(jwtUtility.buildJWT(user), user );
+        return responseBuilder.buildLoginResponse(jwtUtility.buildJWT(user), user);
     }
 
 
     public LoginResponse signUp(SignupRequest signupRequest) {
         authRequestValidator.validateSignUpRequest(signupRequest);
         Optional<UserDTO> user = authDao.insertUserInformation(signupRequest);
-        return responseBuilder.buildLoginResponse(jwtUtility.buildJWT(user.get()), user.get() );
+        return responseBuilder.buildLoginResponse(jwtUtility.buildJWT(user.get()), user.get());
     }
 }
