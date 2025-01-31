@@ -28,6 +28,8 @@ public class ResponseBuilder {
                 .emailId(userDTO.getEmailId())
                 .mobileNo(userDTO.getMobileNo())
                 .address(userDTO.getAddress())
+                .metadata(userDTO.getMetadata())
+                .user_id(userDTO.getId())
                 .build();
     }
 

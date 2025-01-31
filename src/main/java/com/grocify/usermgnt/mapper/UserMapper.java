@@ -20,6 +20,8 @@ public class UserMapper {
                 .emailId(userEntity.getEmailId())
                 .password(userEntity.getPassword())
                 .lastLogin(userEntity.getLastLogin())
+                .id(userEntity.getId())
+                .metadata((userEntity.getMetadata()))
                 .build();
     }
     public UserEntity signUpRequestToUserEntity(SignupRequest signupRequest){
@@ -33,6 +35,7 @@ public class UserMapper {
         userEntity.setPassword(signupRequest.getPassword());
         userEntity.setLastLogin(LocalDate.now());
         userEntity.setStatus(Boolean.TRUE);
+        userEntity.setMetadata(signupRequest.getMetadata());
         return userEntity;
     }
 

@@ -22,20 +22,27 @@ public class GrocifyExceptionHandler {
         return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.UNAUTHORIZED.value()).build(), HttpStatusCode.valueOf(HttpStatus.UNAUTHORIZED.value()));
     }
     @ExceptionHandler(InvalidRequestException.class)
-    public ResponseEntity<GrocifyErrorResponse> handleUserbankPassword(InvalidRequestException exception) {
-        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.NOT_FOUND.value()).build(), HttpStatusCode.valueOf(HttpStatus.NOT_FOUND.value()));
+    public ResponseEntity<GrocifyErrorResponse> handleInvalidRequestException(InvalidRequestException exception) {
+        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.BAD_REQUEST.value()).build(), HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()));
     }
+
+
     @ExceptionHandler(InvalidFirstNameException.class)
-    public ResponseEntity<GrocifyErrorResponse> handleUserbankPassword(InvalidFirstNameException exception) {
-        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.NOT_FOUND.value()).build(), HttpStatusCode.valueOf(HttpStatus.NOT_FOUND.value()));
+    public ResponseEntity<GrocifyErrorResponse> handleInvalidFirstNameException(InvalidFirstNameException exception) {
+        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.BAD_REQUEST.value()).build(), HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()));
     }
     @ExceptionHandler(InvalidLastNameException.class)
-    public ResponseEntity<GrocifyErrorResponse> handleUserbankPassword(InvalidLastNameException exception) {
-        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.NOT_FOUND.value()).build(), HttpStatusCode.valueOf(HttpStatus.NOT_FOUND.value()));
+    public ResponseEntity<GrocifyErrorResponse> handleInvalidListNameException(InvalidLastNameException exception) {
+        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.BAD_REQUEST.value()).build(), HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()));
     }
     @ExceptionHandler(InvalidAddressException.class)
-    public ResponseEntity<GrocifyErrorResponse> handleUserbankPassword(InvalidAddressException exception) {
-        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.NOT_FOUND.value()).build(), HttpStatusCode.valueOf(HttpStatus.NOT_FOUND.value()));
+    public ResponseEntity<GrocifyErrorResponse> invalidAddressException(InvalidAddressException exception) {
+        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.BAD_REQUEST.value()).build(), HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()));
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<GrocifyErrorResponse> invalidPasswordException(InvalidAddressException exception) {
+        return new ResponseEntity<>(GrocifyErrorResponse.builder().message(exception.getMessage()).errorCode(HttpStatus.BAD_REQUEST.value()).build(), HttpStatusCode.valueOf(HttpStatus.BAD_REQUEST.value()));
     }
 
 }

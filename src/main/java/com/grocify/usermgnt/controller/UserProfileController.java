@@ -13,14 +13,14 @@ public class UserProfileController {
     @Autowired
     private UserProfileService userProfileService;
 
-    @PutMapping("/{emailId}")
-    public UserResponse updateProfile(@PathVariable String emailId, @RequestBody UserProfileUpdateRequest userProfileUpdateRequest) {
-        return userProfileService.updateUserProfile(emailId, userProfileUpdateRequest);
+    @PutMapping("/{id}")
+    public UserResponse updateProfile(@PathVariable Long id, @RequestBody UserProfileUpdateRequest userProfileUpdateRequest) {
+        return userProfileService.updateUserProfile(id, userProfileUpdateRequest);
     }
 
-    @DeleteMapping("/{emailId}")
-    public UserResponse deleteProfile(@PathVariable String emailId) {
-        return userProfileService.deleteUserProfile(emailId);
+    @DeleteMapping("/{id}")
+    public UserResponse deleteProfile(@PathVariable Long id) {
+        return userProfileService.deleteUserProfile(id);
     }
 
 

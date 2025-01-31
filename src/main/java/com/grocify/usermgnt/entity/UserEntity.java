@@ -1,13 +1,16 @@
 package com.grocify.usermgnt.entity;
 
 import com.grocify.usermgnt.enums.UserRole;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 @Entity
 @Table(name = "user")
@@ -16,6 +19,9 @@ import java.time.LocalDate;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String emailId;
 
     private String firstName;
@@ -40,5 +46,9 @@ public class UserEntity {
     private LocalDate lastLogin;
 
     private Boolean status;
+
+    @Type(JsonType.class)
+    @Column(columnDefinition = "json")
+    private Map<String, String> metadata;
 
 }

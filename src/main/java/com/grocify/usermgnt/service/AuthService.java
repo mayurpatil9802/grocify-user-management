@@ -35,6 +35,7 @@ public class AuthService {
         authRequestValidator.validateLoginRequest(loginRequest);
         Optional<UserDTO> optionalUserDetails = authDao.getUserByEmailId(loginRequest.getUsername());
 
+
         if(optionalUserDetails.isEmpty()){
             throw new UserNotFoundException("User with provided emailId is not present");
         }
